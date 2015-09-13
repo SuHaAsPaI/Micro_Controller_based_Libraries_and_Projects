@@ -1,0 +1,335 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000146  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000000c  00800060  00000146  000001da  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000c  0080006c  0080006c  000001e6  2**0
+                  ALLOC
+  3 .debug_aranges 00000020  00000000  00000000  000001e6  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_pubnames 0000007b  00000000  00000000  00000206  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   000001ff  00000000  00000000  00000281  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000179  00000000  00000000  00000480  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   000001a7  00000000  00000000  000005f9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  00000070  00000000  00000000  000007a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    000000c8  00000000  00000000  00000810  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000053  00000000  00000000  000008d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	24 c0       	rjmp	.+72     	; 0x5c <__bad_interrupt>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	23 c0       	rjmp	.+70     	; 0x5e <__vector_11>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	e6 e4       	ldi	r30, 0x46	; 70
+  3a:	f1 e0       	ldi	r31, 0x01	; 1
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <.do_copy_data_start>
+
+0000003e <.do_copy_data_loop>:
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+
+00000042 <.do_copy_data_start>:
+  42:	ac 36       	cpi	r26, 0x6C	; 108
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <.do_copy_data_loop>
+
+00000048 <__do_clear_bss>:
+  48:	10 e0       	ldi	r17, 0x00	; 0
+  4a:	ac e6       	ldi	r26, 0x6C	; 108
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a8 37       	cpi	r26, 0x78	; 120
+  54:	b1 07       	cpc	r27, r17
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	3c d0       	rcall	.+120    	; 0xd2 <main>
+  5a:	73 c0       	rjmp	.+230    	; 0x142 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <__vector_11>:
+void uart_write_char(char);
+void uart_flush(void);
+
+
+ISR(USART_RXC_vect)
+{
+  5e:	1f 92       	push	r1
+  60:	0f 92       	push	r0
+  62:	0f b6       	in	r0, 0x3f	; 63
+  64:	0f 92       	push	r0
+  66:	11 24       	eor	r1, r1
+  68:	8f 93       	push	r24
+  6a:	9f 93       	push	r25
+  6c:	ef 93       	push	r30
+  6e:	ff 93       	push	r31
+		b[j]=uart_read_byte();
+  70:	e0 91 6c 00 	lds	r30, 0x006C
+  74:	f0 91 6d 00 	lds	r31, 0x006D
+}
+
+
+
+char uart_read_byte(void)			//Function to read the data {							// received from matlab or 
+{   while(!(UCSRA & (1<<RXC)))		//any other sources
+  78:	5f 9b       	sbis	0x0b, 7	; 11
+  7a:	fe cf       	rjmp	.-4      	; 0x78 <__vector_11+0x1a>
+   {
+   }
+
+   return UDR;
+  7c:	8c b1       	in	r24, 0x0c	; 12
+void uart_flush(void);
+
+
+ISR(USART_RXC_vect)
+{
+		b[j]=uart_read_byte();
+  7e:	e2 59       	subi	r30, 0x92	; 146
+  80:	ff 4f       	sbci	r31, 0xFF	; 255
+  82:	80 83       	st	Z, r24
+		j++;
+  84:	80 91 6c 00 	lds	r24, 0x006C
+  88:	90 91 6d 00 	lds	r25, 0x006D
+  8c:	01 96       	adiw	r24, 0x01	; 1
+  8e:	90 93 6d 00 	sts	0x006D, r25
+  92:	80 93 6c 00 	sts	0x006C, r24
+}
+  96:	ff 91       	pop	r31
+  98:	ef 91       	pop	r30
+  9a:	9f 91       	pop	r25
+  9c:	8f 91       	pop	r24
+  9e:	0f 90       	pop	r0
+  a0:	0f be       	out	0x3f, r0	; 63
+  a2:	0f 90       	pop	r0
+  a4:	1f 90       	pop	r1
+  a6:	18 95       	reti
+
+000000a8 <uart_init>:
+
+
+
+void uart_init(uint16_t ubrr_value)  // Function to initiate UART
+{
+    UBRRL = ubrr_value;
+  a8:	89 b9       	out	0x09, r24	; 9
+    UBRRH = (ubrr_value>>8);
+  aa:	90 bd       	out	0x20, r25	; 32
+
+    UCSRC=(1<<URSEL)|(3<<UCSZ0);
+  ac:	86 e8       	ldi	r24, 0x86	; 134
+  ae:	80 bd       	out	0x20, r24	; 32
+    UCSRB=(1<<RXEN)|(1<<TXEN);
+  b0:	88 e1       	ldi	r24, 0x18	; 24
+  b2:	8a b9       	out	0x0a, r24	; 10
+	UCSRB |= (1<< RXCIE);
+  b4:	57 9a       	sbi	0x0a, 7	; 10
+}
+  b6:	08 95       	ret
+
+000000b8 <uart_read_byte>:
+
+
+
+char uart_read_byte(void)			//Function to read the data {							// received from matlab or 
+{   while(!(UCSRA & (1<<RXC)))		//any other sources
+  b8:	5f 9b       	sbis	0x0b, 7	; 11
+  ba:	fe cf       	rjmp	.-4      	; 0xb8 <uart_read_byte>
+   {
+   }
+
+   return UDR;
+  bc:	8c b1       	in	r24, 0x0c	; 12
+}
+  be:	08 95       	ret
+
+000000c0 <uart_write_char>:
+
+
+
+void uart_write_char(char data)		//Function to send data to
+{							//matlab or to any other
+    while(!(UCSRA & (1<<UDRE)))		//device
+  c0:	5d 9b       	sbis	0x0b, 5	; 11
+  c2:	fe cf       	rjmp	.-4      	; 0xc0 <uart_write_char>
+   {
+   }
+
+   UDR=data;
+  c4:	8c b9       	out	0x0c, r24	; 12
+}
+  c6:	08 95       	ret
+
+000000c8 <uart_flush>:
+
+
+
+
+void uart_flush(void) //TO CLEAR BUFFER
+{
+  c8:	01 c0       	rjmp	.+2      	; 0xcc <uart_flush+0x4>
+unsigned char dummy;
+while( UCSRA & (1<<RXC) ) dummy = UDR;
+  ca:	8c b1       	in	r24, 0x0c	; 12
+  cc:	5f 99       	sbic	0x0b, 7	; 11
+  ce:	fd cf       	rjmp	.-6      	; 0xca <uart_flush+0x2>
+}
+  d0:	08 95       	ret
+
+000000d2 <main>:
+
+
+
+
+void main()
+{
+  d2:	df 93       	push	r29
+  d4:	cf 93       	push	r28
+  d6:	cd b7       	in	r28, 0x3d	; 61
+  d8:	de b7       	in	r29, 0x3e	; 62
+  da:	2a 97       	sbiw	r28, 0x0a	; 10
+  dc:	0f b6       	in	r0, 0x3f	; 63
+  de:	f8 94       	cli
+  e0:	de bf       	out	0x3e, r29	; 62
+  e2:	0f be       	out	0x3f, r0	; 63
+  e4:	cd bf       	out	0x3d, r28	; 61
+	unsigned char data;
+	
+	char a[10]="Hi Suhaas ";
+  e6:	de 01       	movw	r26, r28
+  e8:	11 96       	adiw	r26, 0x01	; 1
+  ea:	e0 e6       	ldi	r30, 0x60	; 96
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+  ee:	8a e0       	ldi	r24, 0x0A	; 10
+  f0:	01 90       	ld	r0, Z+
+  f2:	0d 92       	st	X+, r0
+  f4:	81 50       	subi	r24, 0x01	; 1
+  f6:	e1 f7       	brne	.-8      	; 0xf0 <main+0x1e>
+    int i=0;
+	sei();
+  f8:	78 94       	sei
+
+   uart_init(103); //9600 baud rate reffer data sheet
+  fa:	87 e6       	ldi	r24, 0x67	; 103
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	d4 df       	rcall	.-88     	; 0xa8 <uart_init>
+
+while(1)
+{
+//	 k=strs
+	 if(b == 'Hi ')
+ 100:	8e e6       	ldi	r24, 0x6E	; 110
+ 102:	90 e0       	ldi	r25, 0x00	; 0
+ 104:	80 52       	subi	r24, 0x20	; 32
+ 106:	99 46       	sbci	r25, 0x69	; 105
+ 108:	d9 f4       	brne	.+54     	; 0x140 <main+0x6e>
+ 10a:	80 e0       	ldi	r24, 0x00	; 0
+ 10c:	90 e0       	ldi	r25, 0x00	; 0
+	 {
+		for(i=0;i<=9;i++)
+		{
+			uart_write_char(a[i]);		//send same data as received
+ 10e:	9e 01       	movw	r18, r28
+ 110:	2f 5f       	subi	r18, 0xFF	; 255
+ 112:	3f 4f       	sbci	r19, 0xFF	; 255
+ 114:	f9 01       	movw	r30, r18
+ 116:	e8 0f       	add	r30, r24
+ 118:	f9 1f       	adc	r31, r25
+ 11a:	e0 81       	ld	r30, Z
+
+
+
+void uart_write_char(char data)		//Function to send data to
+{							//matlab or to any other
+    while(!(UCSRA & (1<<UDRE)))		//device
+ 11c:	5d 9b       	sbis	0x0b, 5	; 11
+ 11e:	fe cf       	rjmp	.-4      	; 0x11c <main+0x4a>
+   {
+   }
+
+   UDR=data;
+ 120:	ec b9       	out	0x0c, r30	; 12
+while(1)
+{
+//	 k=strs
+	 if(b == 'Hi ')
+	 {
+		for(i=0;i<=9;i++)
+ 122:	01 96       	adiw	r24, 0x01	; 1
+ 124:	8a 30       	cpi	r24, 0x0A	; 10
+ 126:	91 05       	cpc	r25, r1
+ 128:	ac f3       	brlt	.-22     	; 0x114 <main+0x42>
+ 12a:	01 c0       	rjmp	.+2      	; 0x12e <main+0x5c>
+
+
+void uart_flush(void) //TO CLEAR BUFFER
+{
+unsigned char dummy;
+while( UCSRA & (1<<RXC) ) dummy = UDR;
+ 12c:	8c b1       	in	r24, 0x0c	; 12
+ 12e:	5f 99       	sbic	0x0b, 7	; 11
+ 130:	fd cf       	rjmp	.-6      	; 0x12c <main+0x5a>
+		for(i=0;i<=9;i++)
+		{
+			uart_write_char(a[i]);		//send same data as received
+		}
+		uart_flush();
+		j=0;
+ 132:	10 92 6d 00 	sts	0x006D, r1
+ 136:	10 92 6c 00 	sts	0x006C, r1
+ 13a:	80 e0       	ldi	r24, 0x00	; 0
+ 13c:	90 e0       	ldi	r25, 0x00	; 0
+ 13e:	ea cf       	rjmp	.-44     	; 0x114 <main+0x42>
+ 140:	ff cf       	rjmp	.-2      	; 0x140 <main+0x6e>
+
+00000142 <_exit>:
+ 142:	f8 94       	cli
+
+00000144 <__stop_program>:
+ 144:	ff cf       	rjmp	.-2      	; 0x144 <__stop_program>
