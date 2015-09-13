@@ -1,0 +1,168 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	left
+  18               	left:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 86E0      		ldi r24,lo8(6)
+  25 0002 88BB      		out 56-32,r24
+  26               	/* epilogue start */
+  27               	.LM3:
+  28 0004 0895      		ret
+  29               	.LFE6:
+  31               	.global	right
+  33               	right:
+  34               	.LFB7:
+  35               	.LM4:
+  36               	/* prologue: function */
+  37               	/* frame size = 0 */
+  38               	.LM5:
+  39 0006 89E0      		ldi r24,lo8(9)
+  40 0008 88BB      		out 56-32,r24
+  41               	/* epilogue start */
+  42               	.LM6:
+  43 000a 0895      		ret
+  44               	.LFE7:
+  46               	.global	straight
+  48               	straight:
+  49               	.LFB8:
+  50               	.LM7:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	.LM8:
+  54 000c 85E0      		ldi r24,lo8(5)
+  55 000e 88BB      		out 56-32,r24
+  56               	/* epilogue start */
+  57               	.LM9:
+  58 0010 0895      		ret
+  59               	.LFE8:
+  61               	.global	u_turn
+  63               	u_turn:
+  64               	.LFB9:
+  65               	.LM10:
+  66               	/* prologue: function */
+  67               	/* frame size = 0 */
+  68               	.LM11:
+  69 0012 86E0      		ldi r24,lo8(6)
+  70 0014 88BB      		out 56-32,r24
+  71               	/* epilogue start */
+  72               	.LM12:
+  73 0016 0895      		ret
+  74               	.LFE9:
+  76               	.global	adc_init
+  78               	adc_init:
+  79               	.LFB10:
+  80               	.LM13:
+  81               	/* prologue: function */
+  82               	/* frame size = 0 */
+  83               	.LM14:
+  84 0018 86E8      		ldi r24,lo8(-122)
+  85 001a 86B9      		out 38-32,r24
+  86               	/* epilogue start */
+  87               	.LM15:
+  88 001c 0895      		ret
+  89               	.LFE10:
+  91               	.global	getdata
+  93               	getdata:
+  94               	.LFB11:
+  95               	.LM16:
+  96               	.LVL0:
+  97               	/* prologue: function */
+  98               	/* frame size = 0 */
+  99               	.LM17:
+ 100 001e 90E6      		ldi r25,lo8(96)
+ 101 0020 97B9      		out 39-32,r25
+ 102               	.LM18:
+ 103 0022 97B1      		in r25,39-32
+ 104 0024 982B      		or r25,r24
+ 105 0026 97B9      		out 39-32,r25
+ 106               	.LM19:
+ 107 0028 369A      		sbi 38-32,6
+ 108               	.L12:
+ 109               	.LM20:
+ 110 002a 3699      		sbic 38-32,6
+ 111 002c 00C0      		rjmp .L12
+ 112               	.LM21:
+ 113 002e 84B1      		in r24,36-32
+ 114 0030 95B1      		in r25,(36)+1-32
+ 115               	.LVL1:
+ 116               	/* epilogue start */
+ 117               	.LM22:
+ 118 0032 0895      		ret
+ 119               	.LFE11:
+ 121               	.global	main
+ 123               	main:
+ 124               	.LFB12:
+ 125               	.LM23:
+ 126               	/* prologue: function */
+ 127               	/* frame size = 0 */
+ 128               	.LM24:
+ 129 0034 BB9A      		sbi 55-32,3
+ 130               	.LM25:
+ 131 0036 8FEF      		ldi r24,lo8(-1)
+ 132 0038 83BD      		out 67-32,r24
+ 133               	.LM26:
+ 134 003a 85B5      		in r24,69-32
+ 135 003c 8062      		ori r24,lo8(32)
+ 136 003e 85BD      		out 69-32,r24
+ 137               	.LM27:
+ 138 0040 85B5      		in r24,69-32
+ 139 0042 8864      		ori r24,lo8(72)
+ 140 0044 85BD      		out 69-32,r24
+ 141               	.LM28:
+ 142 0046 85B5      		in r24,69-32
+ 143 0048 8260      		ori r24,lo8(2)
+ 144 004a 85BD      		out 69-32,r24
+ 145               	.LM29:
+ 146 004c 80E0      		ldi r24,lo8(0)
+ 147 004e 00D0      		rcall getdata
+ 148               	.LM30:
+ 149 0050 81E0      		ldi r24,lo8(1)
+ 150 0052 00D0      		rcall getdata
+ 151               	.LM31:
+ 152 0054 82E0      		ldi r24,lo8(2)
+ 153 0056 00D0      		rcall getdata
+ 154               	.LM32:
+ 155 0058 83E0      		ldi r24,lo8(3)
+ 156 005a 00D0      		rcall getdata
+ 157               	.LM33:
+ 158 005c 84E0      		ldi r24,lo8(4)
+ 159 005e 00D0      		rcall getdata
+ 160               	.LM34:
+ 161 0060 85E0      		ldi r24,lo8(5)
+ 162 0062 00D0      		rcall getdata
+ 163               	.L16:
+ 164 0064 00C0      		rjmp .L16
+ 165               	.LFE12:
+ 167               		.comm adcdata,2,1
+ 168               		.comm adcdata1,2,1
+ 241               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:2      *ABS*:0000003f __SREG__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:5      *ABS*:00000034 __CCP__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:18     .text:00000000 left
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:33     .text:00000006 right
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:48     .text:0000000c straight
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:63     .text:00000012 u_turn
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:78     .text:00000018 adc_init
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:93     .text:0000001e getdata
+C:\Users\Delta\AppData\Local\Temp/ccXilNfr.s:123    .text:00000034 main
+                            *COM*:00000002 adcdata
+                            *COM*:00000002 adcdata1
+
+UNDEFINED SYMBOLS
+__do_clear_bss

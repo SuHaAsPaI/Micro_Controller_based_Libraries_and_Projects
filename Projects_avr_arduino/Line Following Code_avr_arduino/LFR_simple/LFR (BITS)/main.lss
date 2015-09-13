@@ -1,0 +1,208 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000000e2  00000000  00000000  00000054  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .debug_aranges 00000020  00000000  00000000  00000136  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  2 .debug_pubnames 00000046  00000000  00000000  00000156  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   0000010f  00000000  00000000  0000019c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000079  00000000  00000000  000002ab  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   00000117  00000000  00000000  00000324  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_frame  00000060  00000000  00000000  0000043c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_str    0000008b  00000000  00000000  0000049c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_ranges 00000030  00000000  00000000  00000527  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   8:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+   c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  10:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  14:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  18:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  1c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  20:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  24:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  28:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  2c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  30:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  34:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  38:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  3c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  40:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  44:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  48:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  4c:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+  50:	0c 94 34 00 	jmp	0x68	; 0x68 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+  60:	0e 94 42 00 	call	0x84	; 0x84 <main>
+  64:	0c 94 6f 00 	jmp	0xde	; 0xde <_exit>
+
+00000068 <__bad_interrupt>:
+  68:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000006c <left>:
+void straight();
+void u_turn();
+
+void left()
+{
+	PORTB=0x06;
+  6c:	86 e0       	ldi	r24, 0x06	; 6
+  6e:	88 bb       	out	0x18, r24	; 24
+}
+  70:	08 95       	ret
+
+00000072 <right>:
+
+
+void right()
+{
+	PORTB=0x09;
+  72:	89 e0       	ldi	r24, 0x09	; 9
+  74:	88 bb       	out	0x18, r24	; 24
+}
+  76:	08 95       	ret
+
+00000078 <straight>:
+
+
+void straight()
+{
+	PORTB=0x05;
+  78:	85 e0       	ldi	r24, 0x05	; 5
+  7a:	88 bb       	out	0x18, r24	; 24
+}
+  7c:	08 95       	ret
+
+0000007e <u_turn>:
+
+void u_turn()
+{
+	PORTB=0x06;
+  7e:	86 e0       	ldi	r24, 0x06	; 6
+  80:	88 bb       	out	0x18, r24	; 24
+}
+  82:	08 95       	ret
+
+00000084 <main>:
+	OCR1B=150;				//Right Motor PWM
+	
+	DDRD=0x30;				//Declaring PD4,PD5 as output*/
+	
+	
+	DDRA=0X00;				//Sensor Input
+  84:	1a ba       	out	0x1a, r1	; 26
+	PORTA=0X07;
+  86:	87 e0       	ldi	r24, 0x07	; 7
+  88:	8b bb       	out	0x1b, r24	; 27
+	
+	DDRB=0x0F;
+  8a:	8f e0       	ldi	r24, 0x0F	; 15
+  8c:	87 bb       	out	0x17, r24	; 23
+}
+
+
+void straight()
+{
+	PORTB=0x05;
+  8e:	45 e0       	ldi	r20, 0x05	; 5
+}
+
+
+void right()
+{
+	PORTB=0x09;
+  90:	39 e0       	ldi	r19, 0x09	; 9
+	PORTB=0x05;
+}
+
+void u_turn()
+{
+	PORTB=0x06;
+  92:	26 e0       	ldi	r18, 0x06	; 6
+	
+
+    while(1)
+    {
+	  switch(PINA & 0X07)
+  94:	89 b3       	in	r24, 0x19	; 25
+  96:	90 e0       	ldi	r25, 0x00	; 0
+  98:	87 70       	andi	r24, 0x07	; 7
+  9a:	90 70       	andi	r25, 0x00	; 0
+  9c:	83 30       	cpi	r24, 0x03	; 3
+  9e:	91 05       	cpc	r25, r1
+  a0:	e1 f0       	breq	.+56     	; 0xda <main+0x56>
+  a2:	84 30       	cpi	r24, 0x04	; 4
+  a4:	91 05       	cpc	r25, r1
+  a6:	4c f4       	brge	.+18     	; 0xba <main+0x36>
+  a8:	81 30       	cpi	r24, 0x01	; 1
+  aa:	91 05       	cpc	r25, r1
+  ac:	b1 f0       	breq	.+44     	; 0xda <main+0x56>
+  ae:	82 30       	cpi	r24, 0x02	; 2
+  b0:	91 05       	cpc	r25, r1
+  b2:	7c f4       	brge	.+30     	; 0xd2 <main+0x4e>
+  b4:	89 2b       	or	r24, r25
+  b6:	89 f0       	breq	.+34     	; 0xda <main+0x56>
+  b8:	ed cf       	rjmp	.-38     	; 0x94 <main+0x10>
+  ba:	85 30       	cpi	r24, 0x05	; 5
+  bc:	91 05       	cpc	r25, r1
+  be:	49 f0       	breq	.+18     	; 0xd2 <main+0x4e>
+  c0:	85 30       	cpi	r24, 0x05	; 5
+  c2:	91 05       	cpc	r25, r1
+  c4:	44 f0       	brlt	.+16     	; 0xd6 <main+0x52>
+  c6:	86 30       	cpi	r24, 0x06	; 6
+  c8:	91 05       	cpc	r25, r1
+  ca:	29 f0       	breq	.+10     	; 0xd6 <main+0x52>
+  cc:	07 97       	sbiw	r24, 0x07	; 7
+  ce:	11 f7       	brne	.-60     	; 0x94 <main+0x10>
+  d0:	04 c0       	rjmp	.+8      	; 0xda <main+0x56>
+}
+
+
+void straight()
+{
+	PORTB=0x05;
+  d2:	48 bb       	out	0x18, r20	; 24
+  d4:	df cf       	rjmp	.-66     	; 0x94 <main+0x10>
+}
+
+
+void right()
+{
+	PORTB=0x09;
+  d6:	38 bb       	out	0x18, r19	; 24
+  d8:	dd cf       	rjmp	.-70     	; 0x94 <main+0x10>
+	PORTB=0x05;
+}
+
+void u_turn()
+{
+	PORTB=0x06;
+  da:	28 bb       	out	0x18, r18	; 24
+  dc:	db cf       	rjmp	.-74     	; 0x94 <main+0x10>
+
+000000de <_exit>:
+  de:	f8 94       	cli
+
+000000e0 <__stop_program>:
+  e0:	ff cf       	rjmp	.-2      	; 0xe0 <__stop_program>

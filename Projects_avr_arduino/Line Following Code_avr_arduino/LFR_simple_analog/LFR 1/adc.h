@@ -1,0 +1,32 @@
+/***************************************************************************************************************************************************
+HEADER:ADC.h
+****************************************************************************************************************************************************
+
+*AUTHOR: Suhaas Pai
+*Target system: AVR devlopment board
+*Microcontroller: ATmega8/Atmega32A
+*Clock: 16MHz
+*COMPILER: WinAVR/ Amel Studio 6.1
+*last modified 09/03/12
+
+*/
+#ifndef _ADC_H_
+#define _ADC_H_
+
+unsigned int adcdata,adcdata1;
+
+ void adc_init()
+ {
+  ADCSRA=0X86;						//ADC enable, ADC interrupt enable, set prescaller to 64
+
+ }
+ unsigned char getdata(unsigned char chno)
+  {
+    ADMUX=0X60;						//right align the ADC result
+    ADMUX|=chno;					//select the ADC channel
+    ADCSRA|=0X40;					//start ADC convertion
+     while((ADCSRA&0x40)==0x40);
+	return ADC;
+  }
+
+#endif

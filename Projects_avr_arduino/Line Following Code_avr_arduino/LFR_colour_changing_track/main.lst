@@ -1,0 +1,241 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	left
+  18               	left:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 86E0      		ldi r24,lo8(6)
+  25 0002 85BB      		out 53-32,r24
+  26               	/* epilogue start */
+  27               	.LM3:
+  28 0004 0895      		ret
+  29               	.LFE6:
+  31               	.global	right
+  33               	right:
+  34               	.LFB7:
+  35               	.LM4:
+  36               	/* prologue: function */
+  37               	/* frame size = 0 */
+  38               	.LM5:
+  39 0006 89E0      		ldi r24,lo8(9)
+  40 0008 85BB      		out 53-32,r24
+  41               	/* epilogue start */
+  42               	.LM6:
+  43 000a 0895      		ret
+  44               	.LFE7:
+  46               	.global	slight_left
+  48               	slight_left:
+  49               	.LFB8:
+  50               	.LM7:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	.LM8:
+  54 000c 82E0      		ldi r24,lo8(2)
+  55 000e 85BB      		out 53-32,r24
+  56               	/* epilogue start */
+  57               	.LM9:
+  58 0010 0895      		ret
+  59               	.LFE8:
+  61               	.global	slight_right
+  63               	slight_right:
+  64               	.LFB9:
+  65               	.LM10:
+  66               	/* prologue: function */
+  67               	/* frame size = 0 */
+  68               	.LM11:
+  69 0012 88E0      		ldi r24,lo8(8)
+  70 0014 85BB      		out 53-32,r24
+  71               	/* epilogue start */
+  72               	.LM12:
+  73 0016 0895      		ret
+  74               	.LFE9:
+  76               	.global	straight
+  78               	straight:
+  79               	.LFB10:
+  80               	.LM13:
+  81               	/* prologue: function */
+  82               	/* frame size = 0 */
+  83               	.LM14:
+  84 0018 8AE0      		ldi r24,lo8(10)
+  85 001a 85BB      		out 53-32,r24
+  86               	/* epilogue start */
+  87               	.LM15:
+  88 001c 0895      		ret
+  89               	.LFE10:
+  91               	.global	u_turn
+  93               	u_turn:
+  94               	.LFB11:
+  95               	.LM16:
+  96               	/* prologue: function */
+  97               	/* frame size = 0 */
+  98               	.LM17:
+  99 001e 86E0      		ldi r24,lo8(6)
+ 100 0020 85BB      		out 53-32,r24
+ 101               	/* epilogue start */
+ 102               	.LM18:
+ 103 0022 0895      		ret
+ 104               	.LFE11:
+ 106               	.global	main
+ 108               	main:
+ 109               	.LFB12:
+ 110               	.LM19:
+ 111               	/* prologue: function */
+ 112               	/* frame size = 0 */
+ 113               	.LM20:
+ 114 0024 81EA      		ldi r24,lo8(-95)
+ 115 0026 8FBD      		out 79-32,r24
+ 116               	.LM21:
+ 117 0028 85E0      		ldi r24,lo8(5)
+ 118 002a 8EBD      		out 78-32,r24
+ 119               	.LM22:
+ 120 002c 86E9      		ldi r24,lo8(150)
+ 121 002e 90E0      		ldi r25,hi8(150)
+ 122 0030 9BBD      		out (74)+1-32,r25
+ 123 0032 8ABD      		out 74-32,r24
+ 124               	.LM23:
+ 125 0034 99BD      		out (72)+1-32,r25
+ 126 0036 88BD      		out 72-32,r24
+ 127               	.LM24:
+ 128 0038 80E3      		ldi r24,lo8(48)
+ 129 003a 81BB      		out 49-32,r24
+ 130               	.LM25:
+ 131 003c 1ABA      		out 58-32,__zero_reg__
+ 132               	.LM26:
+ 133 003e 8FE1      		ldi r24,lo8(31)
+ 134 0040 8BBB      		out 59-32,r24
+ 135               	.LM27:
+ 136 0042 8FE0      		ldi r24,lo8(15)
+ 137 0044 84BB      		out 52-32,r24
+ 138               	.LBB66:
+ 139               	.LBB67:
+ 140               	.LM28:
+ 141 0046 26E0      		ldi r18,lo8(6)
+ 142               	.LBE67:
+ 143               	.LBE66:
+ 144               	.LBB69:
+ 145               	.LBB70:
+ 146               	.LM29:
+ 147 0048 49E0      		ldi r20,lo8(9)
+ 148               	.LBE70:
+ 149               	.LBE69:
+ 150               	.LBB72:
+ 151               	.LBB73:
+ 152               	.LM30:
+ 153 004a 3AE0      		ldi r19,lo8(10)
+ 154               	.L51:
+ 155               	.LBE73:
+ 156               	.LBE72:
+ 157               	.LM31:
+ 158 004c 89B3      		in r24,57-32
+ 159 004e 90E0      		ldi r25,lo8(0)
+ 160 0050 A0E0      		ldi r26,lo8(0)
+ 161 0052 B0E0      		ldi r27,hi8(0)
+ 162 0054 8F71      		andi r24,lo8(31)
+ 163 0056 9070      		andi r25,hi8(31)
+ 164 0058 A070      		andi r26,hlo8(31)
+ 165 005a B070      		andi r27,hhi8(31)
+ 166 005c FC01      		movw r30,r24
+ 167 005e 8032      		cpi r24,32
+ 168 0060 9105      		cpc r25,__zero_reg__
+ 169 0062 00F4      		brsh .L51
+ 170 0064 E050      		subi r30,lo8(-(gs(.L47)))
+ 171 0066 F040      		sbci r31,hi8(-(gs(.L47)))
+ 172 0068 EE0F      		lsl r30
+ 173 006a FF1F      		rol r31
+ 174 006c 0590      		lpm __tmp_reg__,Z+
+ 175 006e F491      		lpm r31,Z
+ 176 0070 E02D      		mov r30,__tmp_reg__
+ 177 0072 0994      		ijmp
+ 178               		.data
+ 179               		.section .progmem.gcc_sw_table, "a", @progbits
+ 180               		.p2align 1
+ 181               	.L47:
+ 182               		.data
+ 183               		.section .progmem.gcc_sw_table, "a", @progbits
+ 184               		.p2align 1
+ 185 0000 0000      		.word gs(.L46)
+ 186 0002 0000      		.word gs(.L46)
+ 187 0004 0000      		.word gs(.L46)
+ 188 0006 0000      		.word gs(.L46)
+ 189 0008 0000      		.word gs(.L46)
+ 190 000a 0000      		.word gs(.L46)
+ 191 000c 0000      		.word gs(.L46)
+ 192 000e 0000      		.word gs(.L46)
+ 193 0010 0000      		.word gs(.L42)
+ 194 0012 0000      		.word gs(.L42)
+ 195 0014 0000      		.word gs(.L42)
+ 196 0016 0000      		.word gs(.L42)
+ 197 0018 0000      		.word gs(.L45)
+ 198 001a 0000      		.word gs(.L46)
+ 199 001c 0000      		.word gs(.L46)
+ 200 001e 0000      		.word gs(.L46)
+ 201 0020 0000      		.word gs(.L45)
+ 202 0022 0000      		.word gs(.L42)
+ 203 0024 0000      		.word gs(.L46)
+ 204 0026 0000      		.word gs(.L42)
+ 205 0028 0000      		.word gs(.L45)
+ 206 002a 0000      		.word gs(.L42)
+ 207 002c 0000      		.word gs(.L45)
+ 208 002e 0000      		.word gs(.L46)
+ 209 0030 0000      		.word gs(.L45)
+ 210 0032 0000      		.word gs(.L42)
+ 211 0034 0000      		.word gs(.L42)
+ 212 0036 0000      		.word gs(.L42)
+ 213 0038 0000      		.word gs(.L45)
+ 214 003a 0000      		.word gs(.L45)
+ 215 003c 0000      		.word gs(.L45)
+ 216 003e 0000      		.word gs(.L46)
+ 217               		.text
+ 218               	.L42:
+ 219               	.LBB75:
+ 220               	.LBB74:
+ 221               	.LM32:
+ 222 0074 35BB      		out 53-32,r19
+ 223 0076 00C0      		rjmp .L51
+ 224               	.L45:
+ 225               	.LBE74:
+ 226               	.LBE75:
+ 227               	.LBB76:
+ 228               	.LBB71:
+ 229               	.LM33:
+ 230 0078 45BB      		out 53-32,r20
+ 231 007a 00C0      		rjmp .L51
+ 232               	.L46:
+ 233               	.LBE71:
+ 234               	.LBE76:
+ 235               	.LBB77:
+ 236               	.LBB68:
+ 237               	.LM34:
+ 238 007c 25BB      		out 53-32,r18
+ 239 007e 00C0      		rjmp .L51
+ 240               	.LBE68:
+ 241               	.LBE77:
+ 242               	.LFE12:
+ 316               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:2      *ABS*:0000003f __SREG__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:5      *ABS*:00000034 __CCP__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:18     .text:00000000 left
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:33     .text:00000006 right
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:48     .text:0000000c slight_left
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:63     .text:00000012 slight_right
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:78     .text:00000018 straight
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:93     .text:0000001e u_turn
+C:\Users\Delta\AppData\Local\Temp/ccJEKIih.s:108    .text:00000024 main
+
+UNDEFINED SYMBOLS
+__do_copy_data
